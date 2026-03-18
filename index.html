@@ -7,61 +7,81 @@
 <style>
 body { margin:0; font-family:Arial; background:#f5f5f5; }
 
-/* Header */
-header { padding:15px; background:#1e88e5; color:white; }
+/* HEADER */
+header {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:10px 20px;
+  background:#1e88e5;
+  color:white;
+}
+header img { height:60px; border-radius:10px; }
 
-/* Navbar */
-nav ul { display:flex; list-style:none; margin:0; padding:0; background:white; }
-nav ul li { padding:15px 20px; cursor:pointer; position:relative; }
+/* NAVBAR */
+nav ul {
+  display:flex;
+  list-style:none;
+  margin:0;
+  padding:0;
+  background:white;
+}
+nav ul li {
+  padding:15px 20px;
+  cursor:pointer;
+  position:relative;
+}
 nav ul li:hover { background:#eee; }
 
-/* Dropdown */
+/* DROPDOWN */
 .dropdown {
   display:none;
   position:absolute;
   top:50px;
   background:white;
-  width:200px;
+  width:220px;
+  max-height:300px;
+  overflow-y:auto;
   box-shadow:0 5px 10px rgba(0,0,0,0.2);
 }
 nav ul li:hover .dropdown { display:block; }
-.dropdown a { display:block; padding:10px; }
+.dropdown a {
+  display:block;
+  padding:10px;
+  cursor:pointer;
+}
 
-/* ✅ FIXED SLIDER */
+/* SLIDER */
 .slider {
   width:100%;
   height:250px;
   overflow:hidden;
 }
-
 .slides {
   display:flex;
   width:300%;
   height:100%;
   animation: slide 9s infinite;
 }
-
 .slides img {
   width:100%;
   height:100%;
   object-fit:cover;
 }
-
-/* ✅ FIXED ANIMATION */
 @keyframes slide {
-  0% { transform: translateX(0%); }
-  30% { transform: translateX(0%); }
-
-  33% { transform: translateX(-100%); }
-  63% { transform: translateX(-100%); }
-
-  66% { transform: translateX(-200%); }
-  96% { transform: translateX(-200%); }
-
-  100% { transform: translateX(0%); }
+  0%,30% { transform:translateX(0); }
+  33%,63% { transform:translateX(-100%); }
+  66%,96% { transform:translateX(-200%); }
+  100% { transform:translateX(0); }
 }
 
-/* Cards */
+/* HOME */
+#homeSection {
+  padding:20px;
+  text-align:center;
+}
+
+/* CARDS */
 .model-card {
   background:#fff;
   padding:15px;
@@ -71,45 +91,84 @@ nav ul li:hover .dropdown { display:block; }
   border-radius:10px;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
   transition:0.3s;
-  text-align:center;
 }
 .model-card:hover { transform:translateY(-5px); }
 
-/* Sections */
-#homeSection { padding:20px; text-align:center; }
-.models { padding:20px; }
-</style>
+.model-card button {
+  background:#1e88e5;
+  color:white;
+  border:none;
+  padding:8px;
+  border-radius:5px;
+}
 
+/* PRODUCTS */
+.models { padding:20px; }
+
+</style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-<h2>🔧 GadgetSmith</h2>
+  <img src="logo.jpg">
+  <h2>GadgetSmith</h2>
 </header>
 
+<!-- NAV -->
 <nav>
 <ul>
+
 <li onclick="showHome()">Home</li>
 
 <li>Mobiles
 <div class="dropdown">
 <a onclick="showModels('Mobiles','Apple')">Apple</a>
 <a onclick="showModels('Mobiles','Samsung')">Samsung</a>
+<a onclick="showModels('Mobiles','Xiaomi')">Xiaomi</a>
+<a onclick="showModels('Mobiles','Realme')">Realme</a>
+<a onclick="showModels('Mobiles','Oppo')">Oppo</a>
+<a onclick="showModels('Mobiles','Vivo')">Vivo</a>
 </div>
 </li>
 
 <li>Laptops
 <div class="dropdown">
+<a onclick="showModels('Laptops','Apple')">Apple</a>
 <a onclick="showModels('Laptops','Dell')">Dell</a>
 <a onclick="showModels('Laptops','HP')">HP</a>
+<a onclick="showModels('Laptops','Lenovo')">Lenovo</a>
+<a onclick="showModels('Laptops','Asus')">Asus</a>
+<a onclick="showModels('Laptops','Acer')">Acer</a>
+</div>
+</li>
+
+<li>Headphones
+<div class="dropdown">
+<a onclick="showModels('Headphones','Sony')">Sony</a>
+<a onclick="showModels('Headphones','Boat')">Boat</a>
+<a onclick="showModels('Headphones','JBL')">JBL</a>
+<a onclick="showModels('Headphones','Bose')">Bose</a>
+<a onclick="showModels('Headphones','Noise')">Noise</a>
+</div>
+</li>
+
+<li>Smart TVs
+<div class="dropdown">
+<a onclick="showModels('TVs','Samsung')">Samsung</a>
+<a onclick="showModels('TVs','LG')">LG</a>
+<a onclick="showModels('TVs','Sony')">Sony</a>
+<a onclick="showModels('TVs','Mi')">Mi</a>
+<a onclick="showModels('TVs','OnePlus')">OnePlus</a>
+<a onclick="showModels('TVs','TCL')">TCL</a>
 </div>
 </li>
 
 </ul>
 </nav>
 
-<!-- ✅ WORKING SLIDER -->
+<!-- SLIDER -->
 <div class="slider">
   <div class="slides">
     <img src="https://picsum.photos/id/1015/1200/250">
@@ -125,10 +184,8 @@ nav ul li:hover .dropdown { display:block; }
 <div>
   <div class="model-card" onclick="quickOpen('Mobiles')">📱 Mobiles</div>
   <div class="model-card" onclick="quickOpen('Laptops')">💻 Laptops</div>
-  <div class="model-card">🎧 Headphones</div>
-  <div class="model-card">📺 Smart TVs</div>
-  <div class="model-card">⌚ Smart Watches</div>
-  <div class="model-card">📟 Tablets</div>
+  <div class="model-card" onclick="quickOpen('Headphones')">🎧 Headphones</div>
+  <div class="model-card" onclick="quickOpen('TVs')">📺 Smart TVs</div>
 </div>
 </section>
 
@@ -137,26 +194,60 @@ nav ul li:hover .dropdown { display:block; }
 
 <script>
 
+// FULL DATA
 const data = {
   Mobiles: {
-    Apple:["iPhone 15","iPhone 14"],
-    Samsung:["Galaxy S23","Galaxy A54"]
+    Apple:["iPhone 16","iPhone 15","iPhone 14"],
+    Samsung:["Galaxy S24","S23","A54"],
+    Xiaomi:["Redmi Note 13","Mi 11"],
+    Realme:["Realme 12","Narzo"],
+    Oppo:["Oppo F21","Reno 8"],
+    Vivo:["Vivo V29","Y100"]
   },
   Laptops: {
-    Dell:["Dell XPS","Dell Inspiron"],
-    HP:["HP Pavilion","HP Victus"]
+    Apple:["MacBook Air","MacBook Pro"],
+    Dell:["XPS 13","Inspiron"],
+    HP:["Pavilion","Victus"],
+    Lenovo:["ThinkPad","IdeaPad"],
+    Asus:["ROG","ZenBook"],
+    Acer:["Aspire","Nitro"]
+  },
+  Headphones: {
+    Sony:["WH-1000XM5","XB910"],
+    Boat:["Rockerz 450","Airdopes"],
+    JBL:["Tune 510","Live 660"],
+    Bose:["QC45","700"],
+    Noise:["Noise 2","Buds"]
+  },
+  TVs: {
+    Samsung:["Crystal 4K","Neo QLED"],
+    LG:["OLED C3","NanoCell"],
+    Sony:["Bravia XR","X80L"],
+    Mi:["Mi 5X","Mi Q1"],
+    OnePlus:["Y1S","U1S"],
+    TCL:["4K HDR","Mini LED"]
   }
 };
 
+// CART
+let cart=[];
+
+function addToCart(model){
+  cart.push(model);
+  alert(model+" added");
+}
+
+// HOME
 function showHome(){
   document.getElementById("modelsContainer").innerHTML="";
   document.getElementById("homeSection").style.display="block";
 }
 
+// PRODUCTS
 function showModels(category,brand){
   document.getElementById("homeSection").style.display="none";
-  let container=document.getElementById("modelsContainer");
 
+  let container=document.getElementById("modelsContainer");
   container.innerHTML=`<h2>${category} - ${brand}</h2>`;
 
   data[category][brand].forEach(model=>{
@@ -164,13 +255,15 @@ function showModels(category,brand){
     <div class="model-card">
       <h4>${model}</h4>
       <p>₹${Math.floor(Math.random()*50000)+10000}</p>
+      <button onclick="addToCart('${model}')">Add to Cart</button>
     </div>`;
   });
 }
 
+// QUICK OPEN
 function quickOpen(category){
-  if(category==="Mobiles") showModels("Mobiles","Apple");
-  if(category==="Laptops") showModels("Laptops","Dell");
+  let firstBrand=Object.keys(data[category])[0];
+  showModels(category,firstBrand);
 }
 
 </script>
