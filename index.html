@@ -7,16 +7,28 @@
 <style>
 body { margin:0; font-family:Arial; background:#f5f5f5; }
 
-/* HEADER */
+/* 🔥 HEADER */
 header {
   display:flex;
   align-items:center;
+  justify-content:center;
   gap:15px;
-  padding:10px 20px;
-  background:#1e88e5;
+  padding:15px;
+  background:linear-gradient(45deg,#1e88e5,#6a1b9a);
   color:white;
 }
-header img { height:60px; border-radius:10px; }
+
+header img {
+  height:70px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(255,255,255,0.6);
+}
+
+header h1 {
+  margin:0;
+  font-size:28px;
+  letter-spacing:2px;
+}
 
 /* NAVBAR */
 nav ul {
@@ -45,29 +57,47 @@ nav ul li:hover { background:#eee; }
   box-shadow:0 5px 10px rgba(0,0,0,0.2);
 }
 nav ul li:hover .dropdown { display:block; }
+
 .dropdown a {
   display:block;
   padding:10px;
-  cursor:pointer;
 }
 
-/* SLIDER */
+/* 🔥 SLIDER */
 .slider {
   width:100%;
-  height:250px;
+  height:300px;
   overflow:hidden;
+  position:relative;
 }
 .slides {
   display:flex;
   width:300%;
   height:100%;
-  animation: slide 9s infinite;
+  animation: slide 10s infinite;
 }
-.slides img {
+.slide {
+  width:100%;
+  position:relative;
+}
+.slide img {
   width:100%;
   height:100%;
   object-fit:cover;
 }
+
+/* TEXT ON SLIDER */
+.caption {
+  position:absolute;
+  top:50%;
+  left:10%;
+  transform:translateY(-50%);
+  color:white;
+  background:rgba(0,0,0,0.6);
+  padding:15px;
+  border-radius:10px;
+}
+
 @keyframes slide {
   0%,30% { transform:translateX(0); }
   33%,63% { transform:translateX(-100%); }
@@ -88,14 +118,17 @@ nav ul li:hover .dropdown { display:block; }
   margin:10px;
   display:inline-block;
   width:200px;
-  border-radius:10px;
+  border-radius:12px;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
   transition:0.3s;
 }
-.model-card:hover { transform:translateY(-5px); }
+.model-card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
 
 .model-card button {
-  background:#1e88e5;
+  background:#6a1b9a;
   color:white;
   border:none;
   padding:8px;
@@ -110,10 +143,10 @@ nav ul li:hover .dropdown { display:block; }
 
 <body>
 
-<!-- HEADER -->
+<!-- 🔥 HEADER WITH LOGO -->
 <header>
-  <img src="logo.jpg">
-  <h2>GadgetSmith</h2>
+  <img src="logo.jpeg" alt="GadgetSmith Logo">
+  <h1>GadgetSmith</h1>
 </header>
 
 <!-- NAV -->
@@ -168,12 +201,34 @@ nav ul li:hover .dropdown { display:block; }
 </ul>
 </nav>
 
-<!-- SLIDER -->
+<!-- 🔥 SLIDER WITH GADGETS -->
 <div class="slider">
   <div class="slides">
-    <img src="https://picsum.photos/id/1015/1200/250">
-    <img src="https://picsum.photos/id/1018/1200/250">
-    <img src="https://picsum.photos/id/1020/1200/250">
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+      <div class="caption">
+        <h2>Latest Mobiles</h2>
+        <p>Starting ₹9,999</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+      <div class="caption">
+        <h2>Premium Laptops</h2>
+        <p>Up to 30% OFF</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1518441902112-09b6b6d6b63a">
+      <div class="caption">
+        <h2>Smart Gadgets Sale</h2>
+        <p>Best Deals Today</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -194,56 +249,25 @@ nav ul li:hover .dropdown { display:block; }
 
 <script>
 
-// FULL DATA
 const data = {
-  Mobiles: {
-    Apple:["iPhone 16","iPhone 15","iPhone 14"],
-    Samsung:["Galaxy S24","S23","A54"],
-    Xiaomi:["Redmi Note 13","Mi 11"],
-    Realme:["Realme 12","Narzo"],
-    Oppo:["Oppo F21","Reno 8"],
-    Vivo:["Vivo V29","Y100"]
-  },
-  Laptops: {
-    Apple:["MacBook Air","MacBook Pro"],
-    Dell:["XPS 13","Inspiron"],
-    HP:["Pavilion","Victus"],
-    Lenovo:["ThinkPad","IdeaPad"],
-    Asus:["ROG","ZenBook"],
-    Acer:["Aspire","Nitro"]
-  },
-  Headphones: {
-    Sony:["WH-1000XM5","XB910"],
-    Boat:["Rockerz 450","Airdopes"],
-    JBL:["Tune 510","Live 660"],
-    Bose:["QC45","700"],
-    Noise:["Noise 2","Buds"]
-  },
-  TVs: {
-    Samsung:["Crystal 4K","Neo QLED"],
-    LG:["OLED C3","NanoCell"],
-    Sony:["Bravia XR","X80L"],
-    Mi:["Mi 5X","Mi Q1"],
-    OnePlus:["Y1S","U1S"],
-    TCL:["4K HDR","Mini LED"]
-  }
+  Mobiles:{Apple:["iPhone 16","iPhone 15"],Samsung:["S24","S23"]},
+  Laptops:{Dell:["XPS","Inspiron"],HP:["Pavilion","Victus"]},
+  Headphones:{Sony:["XM5"],Boat:["Rockerz"]},
+  TVs:{Samsung:["4K"],LG:["OLED"]}
 };
 
-// CART
 let cart=[];
 
 function addToCart(model){
   cart.push(model);
-  alert(model+" added");
+  alert(model+" added to cart");
 }
 
-// HOME
 function showHome(){
   document.getElementById("modelsContainer").innerHTML="";
   document.getElementById("homeSection").style.display="block";
 }
 
-// PRODUCTS
 function showModels(category,brand){
   document.getElementById("homeSection").style.display="none";
 
@@ -260,7 +284,6 @@ function showModels(category,brand){
   });
 }
 
-// QUICK OPEN
 function quickOpen(category){
   let firstBrand=Object.keys(data[category])[0];
   showModels(category,firstBrand);
