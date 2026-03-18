@@ -40,8 +40,13 @@ nav ul li {
   padding:15px 20px;
   cursor:pointer;
   position:relative;
+  transition:0.3s;
 }
-nav ul li:hover { background:#eee; }
+nav ul li:hover {
+  background:#eee;
+  color:#6a1b9a;
+  font-weight:bold;
+}
 
 /* DROPDOWN */
 .dropdown {
@@ -75,12 +80,23 @@ nav ul li:hover .dropdown { display:block; }
   animation: slide 18s infinite;
 }
 
-.slide { width:100%; }
+.slide {
+  width:100%;
+  position:relative;
+}
 
 .slide img {
   width:100%;
   height:100%;
   object-fit:cover;
+  animation: zoom 8s infinite;
+}
+
+/* Zoom effect */
+@keyframes zoom {
+  0% { transform:scale(1); }
+  50% { transform:scale(1.1); }
+  100% { transform:scale(1); }
 }
 
 @keyframes slide {
@@ -91,6 +107,29 @@ nav ul li:hover .dropdown { display:block; }
   64%,74% { transform:translateX(-400%); }
   80%,90% { transform:translateX(-500%); }
   100% { transform:translateX(0); }
+}
+
+/* TEXT ON SLIDER */
+.caption {
+  position:absolute;
+  top:50%;
+  left:10%;
+  transform:translateY(-50%);
+  color:white;
+  background:rgba(0,0,0,0.5);
+  padding:15px;
+  border-radius:10px;
+}
+
+/* FADE ANIMATION */
+.fade-in {
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+.fade-in.show {
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* HOME */
@@ -108,7 +147,13 @@ nav ul li:hover .dropdown { display:block; }
   width:200px;
   border-radius:12px;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition:0.4s;
 }
+.model-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow:0 10px 30px rgba(106,27,154,0.4);
+}
+
 .model-card button {
   background:#6a1b9a;
   color:white;
@@ -119,6 +164,7 @@ nav ul li:hover .dropdown { display:block; }
 
 /* PRODUCTS */
 .models { padding:20px; }
+
 </style>
 </head>
 
@@ -182,26 +228,51 @@ nav ul li:hover .dropdown { display:block; }
 </ul>
 </nav>
 
-<!-- 🔥 6 IMAGE SLIDER -->
+<!-- 🔥 SLIDER -->
 <div class="slider">
   <div class="slides">
-    <div class="slide"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1580910051074-3eb694886505"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1603898037225-1f0c7e04f5a3"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179"></div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+      <div class="caption"><h2>Latest Phones</h2><p>Best Deals</p></div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5">
+      <div class="caption"><h2>Premium Design</h2><p>Top Brands</p></div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+      <div class="caption"><h2>Flagship Models</h2><p>New Launch</p></div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1603898037225-1f0c7e04f5a3">
+      <div class="caption"><h2>Smart Deals</h2><p>Save More</p></div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97">
+      <div class="caption"><h2>Top Rated</h2><p>Best Choice</p></div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179">
+      <div class="caption"><h2>Latest Tech</h2><p>Upgrade Now</p></div>
+    </div>
+
   </div>
 </div>
 
 <!-- 🔥 BANNERS -->
 <section style="padding:20px; text-align:center;">
-<h2>🔥 Trending Offers</h2>
+<h2 class="fade-in">🔥 Trending Offers</h2>
 
 <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:15px;">
-  <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" style="width:300px; border-radius:10px;">
-  <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e" style="width:300px; border-radius:10px;">
-  <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db" style="width:300px; border-radius:10px;">
+  <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" class="fade-in" style="width:300px; border-radius:10px;">
+  <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e" class="fade-in" style="width:300px; border-radius:10px;">
+  <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db" class="fade-in" style="width:300px; border-radius:10px;">
 </div>
 </section>
 
@@ -253,6 +324,19 @@ function quickOpen(category){
   let firstBrand=Object.keys(data[category])[0];
   showModels(category,firstBrand);
 }
+
+/* SCROLL ANIMATION */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll('.fade-in').forEach(el=>{
+  observer.observe(el);
+});
 </script>
 
 </body>
