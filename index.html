@@ -3,160 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <title>GadgetSmith</title>
+
 <style>
-body { font-family: Arial; margin: 0; }
-header { display: flex; justify-content: space-between; padding: 15px; background: #1e88e5; color: white; }
-nav ul { list-style: none; display: flex; margin: 0; padding: 0; background: white; }
-nav ul li { position: relative; padding: 15px 20px; cursor: pointer; }
-.dropdown { display: none; position: absolute; top: 50px; background: white; width: 220px; max-height: 300px; overflow-y: auto; box-shadow: 0 5px 10px rgba(0,0,0,0.2); }
-.dropdown a { display: block; padding: 10px; }
-nav ul li:hover .dropdown { display: block; }
-.models { padding: 20px; }
-.model-card { background: #fff; padding: 10px; margin: 10px; display: inline-block; width: 180px; box-shadow: 0 0 5px rgba(0,0,0,0.2); border-radius: 8px; }
-.banner { text-align: center; padding: 30px; background: #42a5f5; color: white; }
+body { margin:0; font-family:Arial; background:#f5f5f5; }
+
+/* Header */
+header { padding:15px; background:#1e88e5; color:white; }
+
+/* Navbar */
+nav ul { display:flex; list-style:none; margin:0; padding:0; background:white; }
+nav ul li { padding:15px 20px; cursor:pointer; position:relative; }
+nav ul li:hover { background:#eee; }
+
+/* Dropdown */
+.dropdown {
+  display:none;
+  position:absolute;
+  top:50px;
+  background:white;
+  width:200px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+nav ul li:hover .dropdown { display:block; }
+.dropdown a { display:block; padding:10px; }
+
+/* ✅ FIXED SLIDER */
+.slider {
+  width:100%;
+  height:250px;
+  overflow:hidden;
+}
+
+.slides {
+  display:flex;
+  width:300%;
+  height:100%;
+  animation: slide 9s infinite;
+}
+
+.slides img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ✅ FIXED ANIMATION */
+@keyframes slide {
+  0% { transform: translateX(0%); }
+  30% { transform: translateX(0%); }
+
+  33% { transform: translateX(-100%); }
+  63% { transform: translateX(-100%); }
+
+  66% { transform: translateX(-200%); }
+  96% { transform: translateX(-200%); }
+
+  100% { transform: translateX(0%); }
+}
+
+/* Cards */
+.model-card {
+  background:#fff;
+  padding:15px;
+  margin:10px;
+  display:inline-block;
+  width:200px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition:0.3s;
+  text-align:center;
+}
+.model-card:hover { transform:translateY(-5px); }
+
+/* Sections */
+#homeSection { padding:20px; text-align:center; }
+.models { padding:20px; }
 </style>
+
 </head>
+
 <body>
 
 <header>
-  <h2>🔧 GadgetSmith</h2>
+<h2>🔧 GadgetSmith</h2>
 </header>
 
 <nav>
 <ul>
+<li onclick="showHome()">Home</li>
+
 <li>Mobiles
-  <div class="dropdown">
-    <a onclick="showModels('Mobiles','Apple')">Apple</a>
-    <a onclick="showModels('Mobiles','Samsung')">Samsung</a>
-    <a onclick="showModels('Mobiles','Xiaomi')">Xiaomi</a>
-    <a onclick="showModels('Mobiles','Realme')">Realme</a>
-    <a onclick="showModels('Mobiles','Oppo')">Oppo</a>
-    <a onclick="showModels('Mobiles','Vivo')">Vivo</a>
-  </div>
+<div class="dropdown">
+<a onclick="showModels('Mobiles','Apple')">Apple</a>
+<a onclick="showModels('Mobiles','Samsung')">Samsung</a>
+</div>
 </li>
 
 <li>Laptops
-  <div class="dropdown">
-    <a onclick="showModels('Laptops','Apple')">Apple</a>
-    <a onclick="showModels('Laptops','Dell')">Dell</a>
-    <a onclick="showModels('Laptops','HP')">HP</a>
-    <a onclick="showModels('Laptops','Lenovo')">Lenovo</a>
-    <a onclick="showModels('Laptops','Asus')">Asus</a>
-    <a onclick="showModels('Laptops','Acer')">Acer</a>
-  </div>
+<div class="dropdown">
+<a onclick="showModels('Laptops','Dell')">Dell</a>
+<a onclick="showModels('Laptops','HP')">HP</a>
+</div>
 </li>
 
-<li>Headphones
-  <div class="dropdown">
-    <a onclick="showModels('Headphones','Sony')">Sony</a>
-    <a onclick="showModels('Headphones','Boat')">Boat</a>
-    <a onclick="showModels('Headphones','JBL')">JBL</a>
-    <a onclick="showModels('Headphones','Bose')">Bose</a>
-    <a onclick="showModels('Headphones','Realme')">Realme</a>
-    <a onclick="showModels('Headphones','Noise')">Noise</a>
-  </div>
-</li>
-
-<li>Smart TVs
-  <div class="dropdown">
-    <a onclick="showModels('TVs','Samsung')">Samsung</a>
-    <a onclick="showModels('TVs','LG')">LG</a>
-    <a onclick="showModels('TVs','Sony')">Sony</a>
-    <a onclick="showModels('TVs','Mi')">Mi</a>
-    <a onclick="showModels('TVs','OnePlus')">OnePlus</a>
-    <a onclick="showModels('TVs','TCL')">TCL</a>
-  </div>
-</li>
 </ul>
 </nav>
 
-<section class="banner">
-  <h1>Select Brand to View Models</h1>
+<!-- ✅ WORKING SLIDER -->
+<div class="slider">
+  <div class="slides">
+    <img src="https://picsum.photos/id/1015/1200/250">
+    <img src="https://picsum.photos/id/1018/1200/250">
+    <img src="https://picsum.photos/id/1020/1200/250">
+  </div>
+</div>
+
+<!-- HOME -->
+<section id="homeSection">
+<h2>Top Categories</h2>
+
+<div>
+  <div class="model-card" onclick="quickOpen('Mobiles')">📱 Mobiles</div>
+  <div class="model-card" onclick="quickOpen('Laptops')">💻 Laptops</div>
+  <div class="model-card">🎧 Headphones</div>
+  <div class="model-card">📺 Smart TVs</div>
+  <div class="model-card">⌚ Smart Watches</div>
+  <div class="model-card">📟 Tablets</div>
+</div>
 </section>
 
+<!-- PRODUCTS -->
 <section class="models" id="modelsContainer"></section>
 
 <script>
-// Real models per brand
 
 const data = {
   Mobiles: {
-    Apple: [
-      "iPhone 16 Pro Max","iPhone 16 Pro","iPhone 16","iPhone 15 Pro Max","iPhone 15 Pro","iPhone 15",
-      "iPhone 14 Pro Max","iPhone 14 Pro","iPhone 14","iPhone 14 Plus",
-      "iPhone 13 Pro Max","iPhone 13 Pro","iPhone 13","iPhone 13 Mini",
-      "iPhone 12 Pro Max","iPhone 12 Pro","iPhone 12","iPhone 12 Mini",
-      "iPhone 11 Pro Max","iPhone 11 Pro","iPhone 11",
-      "iPhone XS Max","iPhone XS","iPhone XR","iPhone X",
-      "iPhone 8 Plus","iPhone 8","iPhone 7 Plus","iPhone 7",
-      "iPhone 6S Plus","iPhone 6S","iPhone 6 Plus","iPhone 6",
-      "iPhone SE 3 (2022)","iPhone SE 2 (2020)","iPhone SE (2016)",
-      "iPhone 5S","iPhone 5C","iPhone 5","iPhone 4S","iPhone 4",
-      "iPhone 3GS","iPhone 3G","iPhone (1st Gen)"
-    ],
-    Samsung: Array.from({length:50},(_,i)=>`Samsung Model ${i+1}`),
-    Xiaomi: Array.from({length:50},(_,i)=>`Xiaomi Model ${i+1}`),
-    Realme: Array.from({length:50},(_,i)=>`Realme Model ${i+1}`),
-    Oppo: Array.from({length:50},(_,i)=>`Oppo Model ${i+1}`),
-    Vivo: Array.from({length:50},(_,i)=>`Vivo Model ${i+1}`)
+    Apple:["iPhone 15","iPhone 14"],
+    Samsung:["Galaxy S23","Galaxy A54"]
   },
   Laptops: {
-    Apple: ["MacBook Air M2", "MacBook Pro 14 M2", "MacBook Pro 16 M2"],
-    Dell: [
-      "Dell XPS 13","Dell XPS 15","Dell XPS 17","Dell Inspiron 14","Dell Inspiron 15",
-      "Dell Inspiron 16 Plus","Dell Latitude 7420","Dell Latitude 7320","Dell Latitude 9520",
-      "Dell Latitude 5420","Dell G15","Dell G16","Dell Alienware m15 R7","Dell Alienware m17 R5",
-      "Dell Alienware x14","Dell Vostro 15 3000","Dell Vostro 14 5000","Dell Precision 3560",
-      "Dell Precision 5560","Dell Precision 7560","Dell Inspiron Chromebook 14","Dell Inspiron 2-in-1 14",
-      "Dell Inspiron 2-in-1 13","Dell XPS 13 2-in-1","Dell G15 Ryzen Edition","Dell Gaming G5 15",
-      "Dell Latitude 5520","Dell Latitude 7424 Rugged Extreme","Dell Vostro 13 7000","Dell Vostro 16 5000",
-      "Dell Precision 3460","Dell Precision 3461","Dell Precision 3660 Tower","Dell Precision 5760",
-      "Dell Inspiron 15 7000","Dell Inspiron 15 5000","Dell Inspiron 13 7000"
-    ],
-    HP: Array.from({length:50},(_,i)=>`HP Laptop Model ${i+1}`),
-    Lenovo: [
-      "Lenovo ThinkPad X1 Carbon Gen 11","Lenovo ThinkPad X1 Yoga Gen 8","Lenovo ThinkPad T14",
-      "Lenovo ThinkPad T14s","Lenovo ThinkPad T16","Lenovo ThinkPad X13","Lenovo ThinkPad X13 Yoga",
-      "Lenovo ThinkPad L14","Lenovo ThinkPad L15","Lenovo IdeaPad 5","Lenovo IdeaPad 5 Pro",
-      "Lenovo IdeaPad Slim 7","Lenovo IdeaPad Flex 5","Lenovo IdeaPad 3","Lenovo Yoga Slim 7",
-      "Lenovo Yoga 9i","Lenovo Legion 5","Lenovo Legion 5 Pro","Lenovo Legion 7","Lenovo Legion 7i",
-      "Lenovo Legion Slim 7","Lenovo Yoga 7i","Lenovo ThinkBook 14s","Lenovo ThinkBook 15",
-      "Lenovo ThinkBook Plus","Lenovo ThinkPad E14","Lenovo ThinkPad E15","Lenovo Chromebook Duet",
-      "Lenovo Chromebook Flex 5","Lenovo IdeaPad Gaming 3","Lenovo IdeaPad Gaming 3i","Lenovo Legion 5i",
-      "Lenovo Yoga 6","Lenovo Chromebook 3","Lenovo V15","Lenovo V14","Lenovo ThinkPad P14s",
-      "Lenovo ThinkPad P15","Lenovo ThinkPad P16","Lenovo ThinkPad X1 Extreme Gen 5","Lenovo Legion Y7000",
-      "Lenovo IdeaPad Duet 3","Lenovo Yoga Duet 7","Lenovo ThinkPad A Series","Lenovo IdeaPad Slim 3i",
-      "Lenovo ThinkPad X12 Detachable"
-    ],
-    Asus: Array.from({length:50},(_,i)=>`Asus Laptop Model ${i+1}`),
-    Acer: Array.from({length:50},(_,i)=>`Acer Laptop Model ${i+1}`)
-  },
-  Headphones: {
-    Sony: Array.from({length:50},(_,i)=>`Sony Headphone Model ${i+1}`),
-    Boat: Array.from({length:50},(_,i)=>`Boat Headphone Model ${i+1}`),
-    JBL: Array.from({length:50},(_,i)=>`JBL Headphone Model ${i+1}`),
-    Bose: Array.from({length:50},(_,i)=>`Bose Headphone Model ${i+1}`),
-    Realme: Array.from({length:50},(_,i)=>`Realme Headphone Model ${i+1}`),
-    Noise: Array.from({length:50},(_,i)=>`Noise Headphone Model ${i+1}`)
-  },
-  TVs: {
-    Samsung: Array.from({length:50},(_,i)=>`Samsung TV Model ${i+1}`),
-    LG: Array.from({length:50},(_,i)=>`LG TV Model ${i+1}`),
-    Sony: Array.from({length:50},(_,i)=>`Sony TV Model ${i+1}`),
-    Mi: Array.from({length:50},(_,i)=>`Mi TV Model ${i+1}`),
-    OnePlus: Array.from({length:50},(_,i)=>`OnePlus TV Model ${i+1}`),
-    TCL: Array.from({length:50},(_,i)=>`TCL TV Model ${i+1}`)
+    Dell:["Dell XPS","Dell Inspiron"],
+    HP:["HP Pavilion","HP Victus"]
   }
 };
 
-// Show models dynamically
-function showModels(category, brand){
-  const container = document.getElementById("modelsContainer");
-  container.innerHTML = `<h2>${category} - ${brand} Models</h2>`;
+function showHome(){
+  document.getElementById("modelsContainer").innerHTML="";
+  document.getElementById("homeSection").style.display="block";
+}
+
+function showModels(category,brand){
+  document.getElementById("homeSection").style.display="none";
+  let container=document.getElementById("modelsContainer");
+
+  container.innerHTML=`<h2>${category} - ${brand}</h2>`;
+
   data[category][brand].forEach(model=>{
-    container.innerHTML += `<div class="model-card"><h4>${model}</h4><p>Price: Coming Soon</p></div>`;
+    container.innerHTML+=`
+    <div class="model-card">
+      <h4>${model}</h4>
+      <p>₹${Math.floor(Math.random()*50000)+10000}</p>
+    </div>`;
   });
 }
+
+function quickOpen(category){
+  if(category==="Mobiles") showModels("Mobiles","Apple");
+  if(category==="Laptops") showModels("Laptops","Dell");
+}
+
 </script>
 
 </body>
