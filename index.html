@@ -7,7 +7,7 @@
 <style>
 body { margin:0; font-family:Arial; background:#f5f5f5; }
 
-/* 🔥 HEADER */
+/* HEADER */
 header {
   display:flex;
   align-items:center;
@@ -21,13 +21,11 @@ header {
 header img {
   height:70px;
   border-radius:12px;
-  box-shadow:0 0 10px rgba(255,255,255,0.6);
 }
 
 header h1 {
   margin:0;
   font-size:28px;
-  letter-spacing:2px;
 }
 
 /* NAVBAR */
@@ -68,40 +66,30 @@ nav ul li:hover .dropdown { display:block; }
   width:100%;
   height:300px;
   overflow:hidden;
-  position:relative;
 }
+
 .slides {
   display:flex;
-  width:300%;
+  width:600%;
   height:100%;
-  animation: slide 10s infinite;
+  animation: slide 18s infinite;
 }
-.slide {
-  width:100%;
-  position:relative;
-}
+
+.slide { width:100%; }
+
 .slide img {
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-/* TEXT ON SLIDER */
-.caption {
-  position:absolute;
-  top:50%;
-  left:10%;
-  transform:translateY(-50%);
-  color:white;
-  background:rgba(0,0,0,0.6);
-  padding:15px;
-  border-radius:10px;
-}
-
 @keyframes slide {
-  0%,30% { transform:translateX(0); }
-  33%,63% { transform:translateX(-100%); }
-  66%,96% { transform:translateX(-200%); }
+  0%,10% { transform:translateX(0); }
+  16%,26% { transform:translateX(-100%); }
+  32%,42% { transform:translateX(-200%); }
+  48%,58% { transform:translateX(-300%); }
+  64%,74% { transform:translateX(-400%); }
+  80%,90% { transform:translateX(-500%); }
   100% { transform:translateX(0); }
 }
 
@@ -120,13 +108,7 @@ nav ul li:hover .dropdown { display:block; }
   width:200px;
   border-radius:12px;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  transition:0.3s;
 }
-.model-card:hover {
-  transform:translateY(-5px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
-}
-
 .model-card button {
   background:#6a1b9a;
   color:white;
@@ -137,15 +119,14 @@ nav ul li:hover .dropdown { display:block; }
 
 /* PRODUCTS */
 .models { padding:20px; }
-
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 HEADER WITH LOGO -->
+<!-- HEADER -->
 <header>
-  <img src="logo.jpeg" alt="GadgetSmith Logo">
+  <img src="logo.jpeg">
   <h1>GadgetSmith</h1>
 </header>
 
@@ -201,36 +182,28 @@ nav ul li:hover .dropdown { display:block; }
 </ul>
 </nav>
 
-<!-- 🔥 SLIDER WITH GADGETS -->
+<!-- 🔥 6 IMAGE SLIDER -->
 <div class="slider">
   <div class="slides">
-
-    <div class="slide">
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
-      <div class="caption">
-        <h2>Latest Mobiles</h2>
-        <p>Starting ₹9,999</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
-      <div class="caption">
-        <h2>Premium Laptops</h2>
-        <p>Up to 30% OFF</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <img src="https://images.unsplash.com/photo-1518441902112-09b6b6d6b63a">
-      <div class="caption">
-        <h2>Smart Gadgets Sale</h2>
-        <p>Best Deals Today</p>
-      </div>
-    </div>
-
+    <div class="slide"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1580910051074-3eb694886505"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1603898037225-1f0c7e04f5a3"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179"></div>
   </div>
 </div>
+
+<!-- 🔥 BANNERS -->
+<section style="padding:20px; text-align:center;">
+<h2>🔥 Trending Offers</h2>
+
+<div style="display:flex; flex-wrap:wrap; justify-content:center; gap:15px;">
+  <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" style="width:300px; border-radius:10px;">
+  <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e" style="width:300px; border-radius:10px;">
+  <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db" style="width:300px; border-radius:10px;">
+</div>
+</section>
 
 <!-- HOME -->
 <section id="homeSection">
@@ -248,20 +221,12 @@ nav ul li:hover .dropdown { display:block; }
 <section class="models" id="modelsContainer"></section>
 
 <script>
-
 const data = {
   Mobiles:{Apple:["iPhone 16","iPhone 15"],Samsung:["S24","S23"]},
   Laptops:{Dell:["XPS","Inspiron"],HP:["Pavilion","Victus"]},
   Headphones:{Sony:["XM5"],Boat:["Rockerz"]},
   TVs:{Samsung:["4K"],LG:["OLED"]}
 };
-
-let cart=[];
-
-function addToCart(model){
-  cart.push(model);
-  alert(model+" added to cart");
-}
 
 function showHome(){
   document.getElementById("modelsContainer").innerHTML="";
@@ -279,7 +244,7 @@ function showModels(category,brand){
     <div class="model-card">
       <h4>${model}</h4>
       <p>₹${Math.floor(Math.random()*50000)+10000}</p>
-      <button onclick="addToCart('${model}')">Add to Cart</button>
+      <button onclick="alert('Added to cart')">Add to Cart</button>
     </div>`;
   });
 }
@@ -288,7 +253,6 @@ function quickOpen(category){
   let firstBrand=Object.keys(data[category])[0];
   showModels(category,firstBrand);
 }
-
 </script>
 
 </body>
